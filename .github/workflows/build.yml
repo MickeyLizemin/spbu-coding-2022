@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: vladimirkutuev/cmocka:latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build source code
+        run: |
+         mkdir -p cmake_build && \
+         cd ./cmake_build && \
+         cmake .. && \
+         make
+
